@@ -1,10 +1,21 @@
 import { Component } from "react";
 import MyCard from "./MyCard";
+import MyModal from "./MyModal";
 
 class MyGallery extends Component {
   state = {
+    selectedFilm: null, // Film selezionato
+    showModal: false, // Stato del modale
     isLoading: true,
     filmObj: [],
+  };
+
+  openModal = (film) => {
+    this.setState({ selectedFilm: film, showModal: true }); // Imposta il film selezionato
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false, selectedFilm: null }); // Resetta il modale
   };
 
   componentDidMount() {
@@ -52,15 +63,22 @@ class MyGallery extends Component {
     }
 
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-5 m-5">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-5 m-5 mb-0">
         {this.state.filmObj.slice(0, 6).map((film) => (
           <MyCard
             key={film.imdbID}
             img={film.Poster}
             title={film.Title}
             year={film.Year}
+            onCardClick={() => this.openModal(film)}
           ></MyCard>
         ))}
+        {this.state.showModal && (
+          <MyModal
+            film={this.state.selectedFilm}
+            onClose={this.closeModal}
+          ></MyModal>
+        )}
       </div>
     );
   }

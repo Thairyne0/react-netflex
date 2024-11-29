@@ -6,7 +6,10 @@ import { Component } from "react";
 class MyCard extends Component {
   render() {
     return (
-      <div className=" rounded flex flex-col bg-neutral-900 justify-between  text-white p-2">
+      <div
+        className=" rounded flex flex-col bg-neutral-900 justify-between  text-white p-2"
+        onClick={this.props.onCardClick}
+      >
         <img
           src={this.props.img}
           alt="Poster non presente"

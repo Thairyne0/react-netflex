@@ -1,6 +1,7 @@
 import { Component } from "react";
 import MyNavBar from "../Components/MyNavBar";
 import MyGallery from "../Components/MyGallery";
+import MyFooter from "../Components/MyFooter";
 
 class Home extends Component {
   render() {
@@ -14,6 +15,9 @@ class Home extends Component {
           <MyGallery query={"Lord of the ring"}></MyGallery>
           <MyGallery query={"Harry Potter"}></MyGallery>
         </main>
+        <footer>
+          <MyFooter></MyFooter>
+        </footer>
       </div>
     );
   }
