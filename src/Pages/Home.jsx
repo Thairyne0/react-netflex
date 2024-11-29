@@ -1,5 +1,6 @@
 import { Component } from "react";
 import MyNavBar from "../Components/MyNavBar";
+import MyGallery from "../Components/MyGallery";
 
 class Home extends Component {
   render() {
@@ -8,7 +9,11 @@ class Home extends Component {
         <header className="w-full">
           <MyNavBar></MyNavBar>
         </header>
-        <main className="bg-black"></main>
+        <main className="bg-black mt-6">
+          <MyGallery query={"star wars"}></MyGallery>
+          <MyGallery query={"Lord of the ring"}></MyGallery>
+          <MyGallery query={"Harry Potter"}></MyGallery>
+        </main>
       </div>
     );
   }
