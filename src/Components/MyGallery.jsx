@@ -18,8 +18,8 @@ class MyGallery extends Component {
     this.setState({ showModal: false, selectedFilm: null }); // Resetta il modale
   };
 
-  componentDidMount() {
-    fetch(`http://www.omdbapi.com/?apikey=8e84b68a&s=${this.props.query}`) // URL dell'API
+  fetchFilm = (query) => {
+    fetch(`http://www.omdbapi.com/?apikey=8e84b68a&s=${query}`) // URL dell'API
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nella risposta dell’API");
@@ -36,6 +36,16 @@ class MyGallery extends Component {
       .catch((error) => {
         this.setState({ error: error.message, loading: false }); // Gestisce eventuali errori
       });
+  };
+
+  componentDidMount() {
+    this.fetchFilm(this.props.query);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.query !== this.props.query) {
+      this.fetchFilm(this.props.query);
+    }
   }
 
   render() {
